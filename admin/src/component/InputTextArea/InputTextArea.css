@@ -1,0 +1,22 @@
+.input-text-area{
+    background-color:rgba(112.000000923872, 115.00000074505806, 128.0000075697899, 0.07999999821186066);
+	width:400px;
+    height: 400px;
+    border-radius: 10px;
+}
+.InputField{
+    display: block;
+}
+.input_label{
+    color:rgba(117.30000972747803, 119.2428606748581, 127.5, 1);
+	width:65px;
+	height:19px;
+	font-family:Lato;
+	text-align:left;
+	font-size:16px;
+	letter-spacing:-0.4099999964237213;
+
+}
+.red-text{
+    color: red;
+}

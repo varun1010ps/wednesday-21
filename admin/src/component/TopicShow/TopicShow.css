@@ -1,0 +1,36 @@
+.scroll{
+display: flex;
+overflow-x:auto;
+
+}
+.scrollmenu {
+margin-right: 20px;
+}
+.scrollmenu:hover{
+}
+.scroll::-webkit-scrollbar{
+    display: none;
+}
+.image{
+    height: 300px;
+    
+}
+.res{
+    object-fit: contain;
+    max-width: 200px;
+    min-height: 200px;
+    
+}
+.title-text{
+    color:rgba(0, 0, 0, 1);
+    font-family:Lato;
+    text-align:center;
+    font-size:25px;
+    letter-spacing:0;
+    padding: 20px 0px;
+
+}
+.admin-bar{
+    align-items: center;
+    text-align: center;
+}

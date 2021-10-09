@@ -1,0 +1,11 @@
+.admin_text_box{
+    padding: 40px;
+}
+
+.admin_text{
+    color:rgba(7.000000057742, 11.000000294297934, 36.00000165402889, 1);
+	font-family:Lato;
+	text-align:left;
+	font-size:40px;
+	letter-spacing:-1;
+}

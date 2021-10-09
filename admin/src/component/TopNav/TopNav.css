@@ -1,0 +1,12 @@
+.navbar{  
+  width: 100%;
+  height: 70px;
+  display: flex;
+  -webkit-box-pack: justify;
+  justify-content: space-between;
+}
+.Nav_logo{
+    position: relative;
+    padding: 20px 0;
+    padding-left: 80px
+}
