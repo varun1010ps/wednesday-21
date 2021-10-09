@@ -34,11 +34,12 @@ class StoryShow extends Component {
 
   renderList() {
     return this.props.story.map((story) => {
+      console.log('story', story.message?.title)
       return (
-        <div className="card" key={story._id}>
+        <div className="card" >
           <div className="content negative">
             <div className="header">
-              {story.title}
+              {story.message?.title}
               <span className="ui big right floated">
                 {this.renderAdmin(story)}
               </span>
@@ -60,6 +61,7 @@ class StoryShow extends Component {
 }
 
 const mapStateToProps = (state) => {
+  console.log('hello', state.stroy)
   return {
     story: Object.values(state.story),
   };

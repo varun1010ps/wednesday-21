@@ -13,11 +13,11 @@ import InputTextArea from "../InputTextArea/InputTextArea";
 import { createStory } from "../../actions/story";
 import { fetchTopics } from "../../actions/topic";
 import { fetchThemes } from "../../actions/theme";
+
 import "./StoryAdd.css";
 
 class StoryAdd extends Component {
-  state = { file: null, audioFile: null };
-
+  state = { file: 'mp3', audioFile: 'mp3' };
   componentDidMount() {
     this.props.fetchTopics();
     this.props.fetchThemes();
@@ -44,12 +44,19 @@ class StoryAdd extends Component {
       );
     });
   }
+  renderTheme = (theme) => {
+    console.log('theme', theme)
+  }
   renderThemeOption() {
     return this.props.themes.map((theme) => {
       return (
-        <option className="item" key={theme._id} value={theme._id}>
+
+        <option onC className="item" key={theme._id} value={theme._id}>
           {theme.theme}
+          {this.renderTheme(theme)}
         </option>
+
+
       );
     });
   }
@@ -75,6 +82,7 @@ class StoryAdd extends Component {
           name="theme1Id"
           className="ui fluid selection dropdown select-style"
           component="select"
+
         >
           {this.renderThemeOption()}
         </Field>
@@ -99,6 +107,8 @@ class StoryAdd extends Component {
 
   onSubmit = (formValues) => {
     const { createStory } = this.props;
+    const { themId } = this.props
+    console.log('themeid', themId)
     createStory(formValues, this.state.file, this.state.audioFile);
   };
 
@@ -123,7 +133,7 @@ class StoryAdd extends Component {
 
                 {this.renderTheme1Select()}
                 <br />
-                
+
                 <label className="input_label">Audio</label>
                 <br />
                 <input
@@ -141,9 +151,9 @@ class StoryAdd extends Component {
                   type="file"
                   onChange={this.onFileChange.bind(this)}
                 />
-                <br/>
+                <br />
               </div>
-              <br/>
+              <br />
             </div>
             <Link
               to="/admin/library-stories"
@@ -188,6 +198,19 @@ function validatetextarea(values) {
   return errors;
 }
 
+function validateMp3File() {
+  const errors = {};
+
+  _.each(this.state.file, ({ name }) => {
+    if (this.state.file) {
+      alert('you must provide file')
+    }
+  });
+
+  return errors;
+}
+
+
 const mapStateToProps = (state) => {
   return {
     topics: Object.values(state.topic),
@@ -200,6 +223,8 @@ export default compose(
   reduxForm({
     form: "StoryAdd",
     validate,
+    validateMp3File,
     validatetextarea,
+
   })
 )(StoryAdd);

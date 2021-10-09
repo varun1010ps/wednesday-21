@@ -17,7 +17,6 @@ export const createStory = (formValues, file, audiofile) => async (dispatch) => 
     },
   });
   const audioUploadConfig = await story.get("/api/v1/audio");
-
   const audioUpload = await story.put(audioUploadConfig.data.url, audiofile, {
     headers: {
       "Content-Type": audiofile.type,
@@ -28,7 +27,8 @@ export const createStory = (formValues, file, audiofile) => async (dispatch) => 
   const response = await story.post("/api/v1/addStories", {
     ...formValues,
     imageUrl: uploadConfig.data.key,
-    audioFile:audioUploadConfig.data.key
+    audioFile: audioUploadConfig.data.key,
+    themeId: '1223'
   });
 
   dispatch({ type: CREATE_STORY, payload: response.data });
@@ -37,19 +37,22 @@ export const createStory = (formValues, file, audiofile) => async (dispatch) => 
 
 export const fetchStorys = () => async (dispatch) => {
   const response = await story.get("/api/v1/getAllStories");
-  console.log(response)
+  console.log('data.message.docs', response.data.message.docs)
   dispatch({ type: FETCH_STORYS, payload: response.data.message.docs });
 };
 
 export const fetchStory = (_id) => async (dispatch) => {
-  const response = await story.get(`/api/v1/getStories`, {params: {
-    _id: _id
-  }});  
+  const response = await story.get(`/api/v1/getStories`, {
+    params: {
+      // _id: _id
+    }
+  });
   console.log(response)
+
   dispatch({ type: FETCH_STORY, payload: response.data });
 };
 
-export const editStory = (_id, formValues,file) => async (dispatch) => {
+export const editStory = (_id, formValues, file) => async (dispatch) => {
   const uploadConfig = await story.get("/api/v1/upload");
 
   const upload = await story.put(uploadConfig.data.url, file, {
@@ -68,10 +71,12 @@ export const editStory = (_id, formValues,file) => async (dispatch) => {
 };
 
 export const deleteStory = (_id) => async (dispatch) => {
-  await story.post(`/api/v1/removeStories`, {
+  const removeItem = await story.post(`/api/v1/removeStories`, {
     _id
   });
-
+  console.log('removeItem', removeItem)
   dispatch({ type: DELETE_STORY, payload: _id });
+  // dispatch({ type: FETCH_STORY, payload: });
+
   history.push("/admin/library-stories");
 };
